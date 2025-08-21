@@ -19,6 +19,8 @@ CREATE TABLE TipoUsuario (
     descripcion VARCHAR2(100)
 );
 
+SELECT * FROM TipoUsuario
+
 -- Tabla Usuario
 CREATE TABLE Usuario (
     idUsuario NUMBER PRIMARY KEY,
@@ -31,6 +33,8 @@ CREATE TABLE Usuario (
     CONSTRAINT fk_Usuario_TipoUsuario FOREIGN KEY (idTipoUsuario) REFERENCES TipoUsuario(idTipoUsuario)
 );
 
+SELECT * FROM Usuario
+
 -- Tabla Categoria
 CREATE TABLE Categoria (
     idCategoria NUMBER PRIMARY KEY,
@@ -38,6 +42,8 @@ CREATE TABLE Categoria (
     descripcion VARCHAR2(200),
     fechaCreacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+SELECT * FROM Categoria
 
 -- Tabla Productos
 CREATE TABLE Productos (
@@ -52,6 +58,12 @@ CREATE TABLE Productos (
     CONSTRAINT fk_Productos_Categoria FOREIGN KEY (idCategoria) REFERENCES Categoria(idCategoria),
     CONSTRAINT fk_Productos_Usuario FOREIGN KEY (idUsuarioRegistro) REFERENCES Usuario(idUsuario)
 );
+
+ALTER TABLE Productos
+ADD (IMAGEN_URL VARCHAR2(120)NULL);
+
+SELECT * FROM Productos
+
 
 -- Triggers para autoincrementar las llaves primarias usando las secuencias
 CREATE OR REPLACE TRIGGER trg_TipoUsuario
